@@ -1,0 +1,722 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+/* - Weights: 400, 500, 700, 800 */
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --Neutral-0: hsl(0, 0%, 100%);
+  --Neutral-300: hsl(252, 6%, 83%);
+  --Neutral-500: hsl(245, 15%, 58%);
+
+  --blur-hover: hsla(245, 15%, 58%, 0.5);
+  --blur1: hsla(245, 15%, 58%, 0.2);
+  --blur2: hsla(245, 15%, 58%, 0.3);
+
+  --Neutral-700: hsl(245, 19%, 35%);
+  --Neutral-900: hsl(248, 70%, 10%);
+
+  --Orange-500: hsl(7, 88%, 67%);
+  --Orange-700: hsl(7, 71%, 60%);
+  --Gradient-text: -webkit-linear-gradient(
+    left,
+    hsl(7, 86%, 67%),
+    hsl(0, 0%, 100%)
+  );
+  --Gradient-text: linear-gradient(
+    to right,
+    hsl(7, 86%, 67%),
+    hsl(0, 0%, 100%)
+  );
+}
+
+button,
+input {
+  font-family: inherit;
+  color: inherit;
+}
+
+body {
+  display: grid;
+  font-size: 20px;
+  font-family: "Inconsolata", serif;
+  min-height: 100vh;
+  background-image: url(assets/images/pattern-lines.svg),
+  url(assets/images/pattern-circle.svg),
+  url(assets/images/pattern-squiggly-line-top.svg),
+    url(assets/images/pattern-squiggly-line-bottom-mobile-tablet.svg),
+    url(assets/images/background-mobile.png);
+  background-repeat: no-repeat;
+  background-position: 25% 0%, 120% 62%, 100% 2.5%, 0% 100%, bottom;
+  background-size: cover, 30%, 30%, 78%, cover;
+
+  overflow: scroll;
+  scrollbar-color: red orange;
+  scrollbar-width: 200px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 1.65em 0 5.5em 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+header .logo {
+  width: 165px;
+}
+
+.form-wrapper {
+  padding: 0 0.8em;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.76rem;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--Neutral-0);
+  margin-bottom: 0.7em;
+}
+
+.description {
+  color: var(--Neutral-0);
+  font-size: 1.2rem;
+  line-height: 1.25;
+  margin-bottom: 2em;
+}
+
+.drag-and-drop {
+  color: var(--Neutral-0);
+  display: block;
+  margin-bottom: 1.4em;
+}
+
+.drag-and-drop .label-text {
+  text-align: left;
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 0.75em;
+}
+
+.drop-area {
+  position: relative;
+  border: 2px dashed var(--Neutral-0);
+  border-radius: 0.5em;
+  text-align: center;
+  padding: 0.9em 1em;
+  backdrop-filter: blur(2px);
+  background-color: var(--blur1);
+  margin-bottom: 0.6em;
+}
+
+.dragged-over {
+  outline: 1px solid var(--Neutral-300);
+  outline-offset: 2px;
+}
+
+.drop-area:hover {
+  background-color: var(--blur-hover);
+  cursor: pointer;
+}
+
+.drop-area:focus {
+  outline: 1px solid var(--Neutral-300);
+  outline-offset: 2px;
+}
+
+/* disable drop-area on hover if image on preview */
+.disable:hover {
+  cursor: default;
+  background-color: var(--blur1);
+}
+
+.disable:focus {
+  outline: none; 
+  outline-offset: 0;
+}
+
+.upload-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-image img {
+  border: 1.5px solid var(--blur2);
+  border-radius: 0.65em;
+  padding: 0.45em;
+  background-color: var(--blur2);
+  margin-bottom: 0.8em;
+}
+
+.upload-image span {
+  font-size: 1.13rem;
+}
+
+.prev-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prev-image > img {
+  width: 50px;
+  height: 50px;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  border-radius: 0.5em;
+  border: 1px solid var(--Neutral-500);
+  object-fit: cover;
+  margin-bottom: 0.88em;
+}
+
+.prev-image .options {
+  display: flex;
+  gap: 0.5em;
+  font-size: 0.75rem;
+}
+
+.prev-image .options .option {
+  padding: 0.35em 0.6em;
+  background: var(--blur1);
+  border-radius: 0.3em;
+  position: relative;
+  border: none;
+  font-size: inherit;
+  color: var(--Neutral-0);
+  cursor: pointer;
+}
+
+.prev-image .options .option:first-child {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* add active class to "click to upload" inside drop area. initially on showing */
+.drop-area .active {
+  display: flex;
+}
+
+/* add non active class to  "click to upload" inside drop area to hide it when imag on preview*/
+.drop-area .none-active {
+  display: none;
+}
+
+.drag-and-drop .upload-description {
+  font-size: 0.75rem;
+  display: flex;
+  text-align: left;
+  align-items: start;
+  gap: 0.5em;
+}
+
+/* all input warning / info */
+.info {
+  display: flex;
+  align-items: start;
+  gap: 0.5em;
+  margin-top: 0.5em;
+  color: var(--Neutral-0);
+}
+
+.info span {
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+/* style error message */
+.error-info {
+  color: var(--Orange-700);
+  display: none;
+}
+
+/* add error-info class to input with error to display them*/
+.text-box-label .show-error {
+  display: flex;
+}
+
+/* text input wrappers */
+.text-boxes {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-box-label {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  color: var(--Neutral-0);
+  font-size: 1.185rem;
+}
+
+.text-box-label:not(:last-child) {
+  margin-bottom: 1.3em;
+}
+
+.text-box-label:last-child {
+  margin-bottom: 1.3em;
+}
+
+.text-box-label input {
+  margin-top: 0.7em;
+  border-radius: 0.8em;
+  height: 55px;
+  padding-left: 1em;
+  border: 1px solid var(--Neutral-500);
+  backdrop-filter: blur(2px);
+  background-color: var(--blur1);
+  font-size: 1.12rem;
+  outline: none;
+}
+
+.text-box-label input:hover {
+  background-color: var(--blur-hover);
+  backdrop-filter: blur(100px);
+  cursor: pointer;
+}
+
+.text-box-label input:focus {
+  outline: 1px solid var(--Neutral-300);
+  outline-offset: 2px;
+}
+
+.text-box-label input::placeholder {
+  font-size: 1.12rem;
+  color: var(--Neutral-0);
+  opacity: 0.8;
+}
+
+form {
+  max-width: 375px;
+  margin: 0 auto;
+}
+
+form > button {
+  background-color: var(--Orange-500);
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--Neutral-900);
+  border-radius: 0.6em;
+  padding: 0.9em 0;
+  border: none;
+}
+
+form > button:not(:disabled):hover{
+  background-color: var(--Orange-700);
+  cursor: pointer;
+  box-shadow: 0px -5px var(--Orange-500) inset;
+}
+
+form > button:focus {
+  background-color: var(--Orange-700);
+  cursor: pointer;
+  box-shadow: 0px -5px var(--Orange-500) inset;
+  outline: 1px solid var(--Neutral-300);
+  outline-offset: 1px;
+}
+
+/* generate ticket button will be disabled untill form filled properly */
+form > button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* hide form when generate ticket */
+.hide-form {
+  display: none;
+}
+
+/* ticket wrapper*/
+.generated-ticket-wrapper {
+  padding: 0 0.8em;
+  text-align: center;
+  display: none;
+}
+
+.generated-ticket-wrapper .ticket-title .name {
+  background: var(--Gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* show ticket when generate ticket */
+.show-ticket {
+  display: block;
+}
+
+.generated-ticket-wrapper .description {
+  color: var(--Neutral-0);
+  font-size: 1.2rem;
+  line-height: 1.25;
+  margin-bottom: 3.6em;
+}
+
+.generated-ticket-wrapper .description .email {
+  color: var(--Orange-500);
+}
+
+.ticket {
+  width: 17em;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-image: url(assets/images/pattern-ticket.svg);
+  background-position: 100%, 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 160px;
+  padding: 0.7em 0em 0.7em 0.7em;
+  justify-content: space-between;
+  backdrop-filter: blur(5px);
+}
+
+.ticket-left {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.ticket-left .top {
+  display: flex;
+  align-items: start;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.ticket-left .top > img {
+  width: 30px;
+  margin-top: 0.2em;
+}
+
+.ticket-left .top .text {
+  text-align: left;
+}
+
+.ticket-left .top .text .logo-text {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--Neutral-0);
+}
+
+.ticket-left .top .text .ticked-info-text {
+  color: var(--Neutral-300);
+  font-size: 0.88rem;
+  margin-top: 0.7em;
+  margin-bottom: 1.8em;
+}
+
+.ticket .user {
+  display: flex;
+  gap: 0.55em;
+  align-items: center;
+}
+
+.ticket-left .user > img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 0.4em;
+}
+
+.ticket-left .user .user-info {
+  text-align: left;
+}
+
+.ticket-left .user .user-info > .name {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--Neutral-0);
+  margin-bottom: 0.2em;
+  word-break: break-all;
+}
+
+.ticket-left .user .user-info .github-user-name {
+  display: flex;
+  align-items: center;
+  font-size: 0.88rem;
+  color: var(--Neutral-300);
+  gap: 3px;
+}
+
+.ticket-left .user .user-info .github-user-name > img {
+  width: 17px;
+}
+
+.ticket-left .user .user-info .github-user-name .name {
+  word-break: break-all;
+}
+
+.ticket .ticket-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 19%;
+}
+
+.ticket .ticket-right .stamp {
+  writing-mode: sideways-rl;
+  color: var(--Neutral-500);
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
+@media (width < 375px) {
+  .ticket-left .top > img {
+    width: 25px;
+  }
+  .ticket-left .top .text .logo-text {
+    font-size: 1.3rem;
+  }
+  .ticket-left .top {
+    margin-bottom: 0em;
+  }
+  .ticket-left .top .text .ticked-info-text {
+    margin-top: 0.4em;
+    margin-bottom: 1.5em;
+  }
+  .ticket-left .user > img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .ticket-left .user .user-info .name {
+    font-size: 1rem;
+  }
+
+  .ticket-left .user .user-info .github-user-name > img {
+    width: 17px;
+  }
+
+  .ticket .ticket-right .stamp {
+    font-size: 1rem;
+  }
+}
+
+@media (width > 37.5em) {
+  /* min width: 600px */
+  .form-wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .generated-ticket-wrapper {
+    padding: 0;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .generated-ticket-wrapper .description {
+    font-size: 1.3rem;
+  }
+  
+  .ticket {
+    width: 22em;
+    padding: 1.2em 0em 1.2em 1.2em;
+  }
+
+  .ticket-left {
+    max-width: 80%;
+  }
+
+  .ticket-left .top {
+    gap: 1em;
+    margin-bottom: 1em;
+  }
+
+  .ticket-left .top > img {
+    width: 35px;
+    margin-top: 0.2em;
+  }
+
+  .ticket-left .top .text .logo-text {
+    font-size: 2rem;
+  }
+
+  .ticket-left .top .text .ticked-info-text {
+    font-size: 1rem;
+    margin-top: .5em;
+  }
+
+  .ticket .user {
+    gap: .8em;
+  }
+
+  .ticket-left .user > img {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.6em;
+  }
+
+  .ticket-left .user .user-info > .name {
+    font-size: 1.5rem;
+    margin-bottom: 0.2em;
+  }
+
+  .ticket-left .user .user-info .github-user-name {
+    gap: 10px;
+  }
+
+  .ticket-left .user .user-info .github-user-name > img {
+    width: 20px;
+  }
+
+  .ticket-left .user .user-info .github-user-name > .name {
+    font-size: 16px;
+  } 
+
+  .ticket .ticket-right {
+    width: 18%;
+  }
+
+  .ticket .ticket-right .stamp {
+    font-size: 1.7rem;
+    line-height: 0;
+  }
+}
+
+@media (width > 48em) {
+    /*# min width: 768px #*/
+
+  body {
+    background-image: url(assets/images/pattern-lines.svg),
+      url(assets/images/pattern-circle.svg),
+      url(assets/images/pattern-circle.svg),
+      url(assets/images/pattern-squiggly-line-top.svg),
+      url(assets/images/pattern-squiggly-line-bottom-desktop.svg),
+      url(assets/images/background-tablet.png);
+    background-repeat: no-repeat;
+    background-size: cover, 11em, 11em, 21em, auto, 100vw 100%;
+    background-position: 25% 0%, 3.5% -10%, 90% 60%, 100% 10%, 0% 100%, 0% 0%;
+  }
+
+  .wrapper {
+    max-width: initial;
+    width: 100%;
+    padding: 0;
+    padding-inline: 2em;
+  }
+
+  header {
+    margin: 0;
+    padding-block: 1.9em 2.86em;
+  }
+
+  header .logo {
+    width: 210px;
+  }
+
+  .form-wrapper {
+    max-width: 39.5em;
+    padding-bottom: 6.5em;
+  }
+
+  .title {
+    font-size: 3rem;
+    line-height: 1.25;
+    margin-bottom: 0.3em;
+  }
+
+  .description {
+    font-size: 1.435rem;
+    line-height: 1.5;
+  }
+
+  #form {
+    max-width: 59%;
+    margin: 0 auto;
+  }
+
+  .generated-ticket-wrapper {
+    max-width: 39.5em;
+    padding-bottom: 12em;
+  }
+
+  .generated-ticket-wrapper .ticket-title {
+    margin-block: .3em .5em;
+  }
+
+  .generated-ticket-wrapper .description {
+    margin: 0 auto;
+    margin-bottom: 4.7em;
+    font-size: 1.435rem;
+    line-height: 1.3;
+    max-width: 21em;
+  }
+
+  .ticket {
+    width: 30em;
+    margin: 0 auto;
+  }
+
+  .ticket-left .top {
+    display: flex;
+    align-items: start;
+    margin-bottom: 2.2em;
+  }
+
+  .ticket-left .top > img {
+    width: 40px;
+  }
+
+  .ticket-left .top .text .logo-text {
+    font-size: 2.36rem;
+  }
+
+  .ticket-left .top .text .ticked-info-text {
+    font-size: 1.12rem;
+    margin-top: 1em;
+  }
+
+  .ticket-left .user > img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .ticket-left .user .user-info > .name {
+    font-size: 1.75rem;
+    margin-bottom: 0.4em;
+  }
+
+  .ticket-left .user .user-info .github-user-name > .name {
+    font-size: 19px;
+  } 
+
+  .ticket .ticket-right {
+    display: flex;
+  }
+}
+
+@media (width > 62em) {
+  /*# min width: 992px #*/
+
+  body {
+    background-image: url(assets/images/pattern-lines.svg),
+      url(assets/images/pattern-circle.svg),
+      url(assets/images/pattern-circle.svg),
+      url(assets/images/pattern-squiggly-line-top.svg),
+      url(assets/images/pattern-squiggly-line-bottom-desktop.svg),
+      url(assets/images/background-desktop.png);
+      background-repeat: no-repeat;
+      background-size: cover, 11em, 11em, 21em, auto, 100vw 100%;
+      background-position: 25% 0%, 3.5% -10%, 78% 60%, 100% 10%, 0% 100%, 0% 0%;
+  }
+}

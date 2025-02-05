@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Conference ticket generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- <div class="bg"></div> -->
+      <!-- heading -->
+      <header>
+        <img class="logo" src="assets/images/logo-full.svg" alt="logo image" />
+      </header>
+
+      <!-- Form starts -->
+      <main>
+        <div class="form-wrapper">
+          <h1 class="title form-title">
+            Your Journey to Coding Conf 2025 Starts Here!
+          </h1>
+          <p class="description form-description">
+            Secure your spot at next year's biggest coding conference.
+          </p>
+
+          <form id="form">
+            <!-- drag-and-drop -->
+            <div class="drag-and-drop">
+              <span class="label-text">Upload Avatar</span>
+
+              <div class="drop-area" tabindex="-1">
+                <input class="input" type="file" id="file-input" accept="image/*" hidden>
+
+                <div class="upload-image active">
+                  <img src="assets/images/icon-upload.svg" alt="" />
+                  <span class="upload-text"
+                    >Drag and drop or click to upload</span
+                  >
+                </div>
+
+                <!-- prev image -->
+                <div class="prev-image none-active">
+                  <img src="assets/images/image-avatar.jpg" alt="">
+                  <div class="options">
+                    <button type="button" class="remove-image option">Remove image</button>
+                    <button type="button" class="change-image option">Change image</button>
+                  </div>
+                </div>
+              </div>
+              <!-- info -->
+              <div class="upload-description info">
+                <img src="assets//images/icon-info.svg" alt="" />
+                <span>Upload your photo (JPG or PNG, max size: 500KB).</span>
+              </div>
+
+              <!-- <small class="error-info info">
+                <img src="assets/images/icon-error.svg" alt="" />
+                <span>File too large. Please upload a photo under 500KB</span>
+              </small> -->
+            </div>
+
+            <div class="text-boxes">
+              <!-- full name -->
+              <label class="text-box-label" for="fullName">
+                Full Name
+                <input
+                  type="text"
+                  name="fullName"
+                  id="fullName"
+                  placeholder="Full Name"
+                />
+
+                <!-- info -->
+                <small class="error-info info">
+                  <img src="assets/images/icon-error.svg" alt="" />
+                  <span>Please enter your full name. e.g John Doe</span>
+                </small>
+                <!-- #### -->
+              </label>
+
+              <!-- email -->
+              <label class="text-box-label" for="email">
+                Email Address
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="example@email.com"
+                />
+
+                <!-- info -->
+                <small class="error-info info">
+                  <img src="assets/images/icon-error.svg" alt="" />
+                  <span>Please enter a valid email address.</span>
+                </small>
+                <!-- #### -->
+              </label>
+
+              <!-- gitHub username -->
+              <label class="text-box-label" for="gitHubUserName">
+                GitHub Username
+                <input
+                  type="text"
+                  name="gitHubUserName"
+                  id="gitHubUserName"
+                  placeholder="@yourusername"
+                />
+
+                <!-- info -->
+                <small class="error-info info">
+                  <img src="assets/images/icon-error.svg" alt="" />
+                  <span>Please provide a valid GitHub Usename.</span>
+                </small>
+                <!-- #### -->
+              </label>
+            </div>
+
+            <button disabled class="generate-ticket" type="submit">Generate My Ticket</button>
+          </form>
+        </div>
+        <!-- Form ends -->
+
+        <!-- Generated tickets starts -->
+        <div class="generated-ticket-wrapper">
+          <h1 class="title ticket-title">
+            Congrats,
+            <span class="name">Jonatan Kristof</span>! Your ticket is ready.
+          </h1>
+          <p class="description">
+            We've emailed your ticket to
+            <span class="email">jonatan@email.com</span>
+            and will send updates in the run up to the event.
+          </p>
+
+          <div class="ticket">
+         
+            <div class="ticket-left">
+              <!-- top -->
+              <div class="top">
+                <!-- logo -->
+                  <img src="assets/images/logo-mark.svg" alt="logo" />
+                <!-- info -->
+                 <div class="text">
+                  <span class="logo-text">Coding Conf</span>
+                  <p class="ticked-info-text">
+                    <span class="time-stamp">Jan 31, 2025</span> / Austin, TX</p>
+                 </div>
+                
+              </div>
+
+              <!-- bottom -->
+              <div class="user">
+                <img src="assets/images/image-avatar.jpg" alt="user image" />
+                <div class="user-info">
+                  <p class="name">Jonatan Kristof</p>
+                  <div class="github-user-name">
+                    <img src="assets/images/icon-github.svg" alt="" />
+                  <p class="name">@jonatankristof0101</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <!-- ticket right -->
+              <div class="ticket-right">
+                <p class="stamp">#01609</p>
+              </div>
+            </div>
+          </div>
+        <!-- Generated tickets ends -->
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
