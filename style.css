@@ -54,10 +54,6 @@ body {
   background-repeat: no-repeat;
   background-position: 25% 0%, 120% 62%, 100% 2.5%, 0% 100%, bottom;
   background-size: cover, 30%, 30%, 78%, cover;
-
-  overflow: scroll;
-  scrollbar-color: red orange;
-  scrollbar-width: 200px;
 }
 
 .wrapper {
@@ -370,7 +366,8 @@ form > button:disabled {
 }
 
 .ticket {
-  width: 17em;
+  max-width: 17em;
+  min-width: 230px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -395,7 +392,7 @@ form > button:disabled {
   display: flex;
   align-items: start;
   gap: 0.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 1.8em;
 }
 
 .ticket-left .top > img {
@@ -417,7 +414,6 @@ form > button:disabled {
   color: var(--Neutral-300);
   font-size: 0.88rem;
   margin-top: 0.7em;
-  margin-bottom: 1.8em;
 }
 
 .ticket .user {
@@ -475,35 +471,72 @@ form > button:disabled {
   font-size: 1.3rem;
 }
 
-@media (width < 375px) {
-  .ticket-left .top > img {
-    width: 25px;
+@media (width < 312px) {
+  .ticket .ticket-left .top > img {
+    width: 20px;
   }
   .ticket-left .top .text .logo-text {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
-  .ticket-left .top {
-    margin-bottom: 0em;
+  .ticket .ticket-left .top {
+    margin-bottom: .5em;
   }
   .ticket-left .top .text .ticked-info-text {
     margin-top: 0.4em;
-    margin-bottom: 1.5em;
+    font-size: .8rem;
   }
+
   .ticket-left .user > img {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
   }
 
   .ticket-left .user .user-info .name {
     font-size: 1rem;
   }
 
-  .ticket-left .user .user-info .github-user-name > img {
-    width: 17px;
+  .ticket .ticket-left .user .user-info .github-user-name > img {
+    width: 12px;
+  }
+
+  .ticket .ticket-left .user .user-info .github-user-name .name {
+    font-size: .8rem;
   }
 
   .ticket .ticket-right .stamp {
+    font-size: 16px;
+  } 
+}
+
+@media (width < 350px) {
+  .ticket .ticket-left {
+    height: 100%;
+  }
+
+  .ticket-left .top > img {
+    width: 25px;
+  }
+  .ticket-left .top .text .logo-text {
+    font-size: 1.3rem;
+  }
+  .ticket .ticket-left .top {
+    margin-bottom: 1em;
+  }
+  .ticket .ticket-left .top .text .ticked-info-text {
+    margin-top: 0.4em;
+  }
+
+  .ticket .ticket-left .user > img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .ticket .ticket-left .user .user-info .name {
     font-size: 1rem;
+  }
+
+  .ticket-left .user .user-info .github-user-name > img {
+    width: 17px;
   }
 }
 
@@ -529,7 +562,7 @@ form > button:disabled {
   }
   
   .ticket {
-    width: 22em;
+    max-width: 20em;
     padding: 1.2em 0em 1.2em 1.2em;
   }
 
@@ -663,7 +696,7 @@ form > button:disabled {
   }
 
   .ticket {
-    width: 30em;
+    max-width: 26.5em;
     margin: 0 auto;
   }
 
